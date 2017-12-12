@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-.. module:: 
+.. module::
    :platform: Unix
    :synopsis: containing module for oscar app overrides
 
@@ -14,6 +14,7 @@ from django.views.generic.edit import FormMixin
 from oscar.apps.checkout import views
 
 from oscar_payments import import_shop_app
+
 
 class PaymentDetailsView(FormMixin, views.PaymentDetailsView):
     """
@@ -48,10 +49,6 @@ class PaymentDetailsView(FormMixin, views.PaymentDetailsView):
                                                                 **kwargs)
 
     def post(self, request, *args, **kwargs):
-        # oscar bit
-        error_response = self.get_error_response()
-        if error_response:
-            return error_response
         if self.preview:
             if request.POST.get('action', '') == 'place_order':
                 return self.submit(request.basket)

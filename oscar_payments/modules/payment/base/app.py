@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 
 """
-.. module:: 
+.. module::
    :platform: Unix
    :synopsis: TODO
 
 .. moduleauthor:: Tomas Neme <lacrymology@gmail.com>
 
 """
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.utils.translation import ugettext_noop as _
 from oscar.core.application import Application
 from oscar.apps.payment.exceptions import PaymentError
 
 from oscar_payments.modules.payment.base.views import BaseRootView
+
 
 class PaymentModule(Application):
     """
@@ -35,8 +36,8 @@ class PaymentModule(Application):
 
     def __init__(self, *args, **kwargs):
         if self.name is None:
-            raise PaymentError, "%s.%s: name property cannot be None" % (
-                self.__class__.__module__, self.__class__.__name__)
+            raise PaymentError("%s.%s: name property cannot be None" % (
+                self.__class__.__module__, self.__class__.__name__))
         if self.preview_view is None:
             self.preview_view = self.root_view
         super(PaymentModule, self).__init__(*args, **kwargs)
@@ -84,9 +85,9 @@ class PaymentModule(Application):
         Add default root and preview urls and
         """
         base_urls = super(PaymentModule, self).get_urls()
-        urlpatterns = patterns('',
+        urlpatterns = [
             url(r'^$', self.root_view.as_view(module=self), name=self.root_url_name()),
             url(r'^preview/$', self.root_view.as_view(module=self),
                 kwargs=dict(preview=True), name=self.preview_url_name())
-        )
+        ]
         return urlpatterns + base_urls

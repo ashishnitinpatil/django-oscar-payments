@@ -8,7 +8,7 @@
 .. moduleauthor:: Tomas Neme <lacrymology@gmail.com>
 
 """
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.utils.translation import ugettext_lazy as _
 from oscar_payments.modules.payment.base.app import PaymentModule
 from oscar_payments.modules.payment.dummy import views

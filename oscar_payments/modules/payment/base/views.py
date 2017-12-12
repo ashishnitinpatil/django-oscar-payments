@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-.. module:: 
+.. module::
    :platform: Unix
    :synopsis: TODO
 
@@ -11,6 +11,7 @@
 from oscar.apps.checkout import views
 from oscar.apps.payment import forms
 from oscar.apps.payment.exceptions import PaymentError
+
 
 class BaseRootMixin(object):
     """
@@ -50,6 +51,7 @@ class BaseRootMixin(object):
         ctx.update(super(BaseRootMixin, self).get_context_data(**kwargs))
         return ctx
 
+
 class BankcardBillcardMixin(object):
     """
     Mixin object that sets the template names and adds the forms to the context
@@ -85,7 +87,7 @@ class BankcardBillcardMixin(object):
         :return: The form instance
         """
         if type not in ('bankcard', 'billing_address'):
-            raise PaymentError, "Form type parameter is required"
+            raise PaymentError("Form type parameter is required")
         return getattr(self, '{}_form_class'.format(type))(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
