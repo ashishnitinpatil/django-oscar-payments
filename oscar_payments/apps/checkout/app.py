@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-.. module:: oscar_payments.apps.checkout.app
-   :platform: Unix
-   :synopsis: TODO
-
-.. moduleauthor:: Tomas Neme <lacrymology@gmail.com>
-
-"""
 import logging
 from collections import OrderedDict
 from django.conf import settings

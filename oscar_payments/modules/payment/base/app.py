@@ -86,7 +86,8 @@ class PaymentModule(Application):
         """
         base_urls = super(PaymentModule, self).get_urls()
         urlpatterns = [
-            url(r'^$', self.root_view.as_view(module=self), name=self.root_url_name()),
+            url(r'^$', self.root_view.as_view(
+                module=self), name=self.root_url_name()),
             url(r'^preview/$', self.root_view.as_view(module=self),
                 kwargs=dict(preview=True), name=self.preview_url_name())
         ]

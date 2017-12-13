@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-.. module::
-   :platform: Unix
-   :synopsis: TODO
-
-.. moduleauthor:: Tomas Neme <lacrymology@gmail.com>
-
-"""
 from oscar.apps.checkout import views
 from oscar.apps.payment import forms
 from oscar.apps.payment.exceptions import PaymentError
@@ -47,7 +37,7 @@ class BaseRootMixin(object):
         ctx = {
             'preview_url': self.module.get_preview_url(),
             'payment_module_root': self.module.get_root_url(),
-            }
+        }
         ctx.update(super(BaseRootMixin, self).get_context_data(**kwargs))
         return ctx
 
@@ -72,7 +62,7 @@ class BankcardBillcardMixin(object):
         ctx = {
             'bankcard_form': self.get_form('bankcard'),
             'billing_address_form': self.get_form('billing_address'),
-            }
+        }
         ctx.update(super(BankcardBillcardMixin,
                          self).get_context_data(**kwargs))
         return ctx
@@ -115,6 +105,4 @@ class BankcardBillcardMixin(object):
 
 
 class BaseRootView(BaseRootMixin, views.PaymentDetailsView):
-    """
-    Base class for payment modules "root" view.
-    """
+    """Base class for payment modules "root" view"""

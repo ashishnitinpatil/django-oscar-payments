@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-.. module::
-   :platform: Unix
-   :synopsis: containing module for oscar app overrides
-
-.. moduleauthor:: Tomas Neme <lacrymology@gmail.com>
-
-"""
 from django import forms
 from django.shortcuts import redirect
 from django.views.generic.edit import FormMixin
@@ -30,6 +20,7 @@ class PaymentDetailsView(FormMixin, views.PaymentDetailsView):
     #: "select payment" view
 
     template_name = "checkout/select_payment.html"
+
     def __init__(self, *args, **kwargs):
         super(PaymentDetailsView, self).__init__(*args, **kwargs)
         self.app = import_shop_app('checkout', 'app').application
@@ -65,7 +56,7 @@ class PaymentDetailsView(FormMixin, views.PaymentDetailsView):
     def get_form_class(self):
         class PaymentModuleForm(forms.Form):
             module = forms.ChoiceField(
-                label='', # no label for this field
+                label='',  # no label for this field
                 choices=[m['app'].get_choice()
                          for m in self.app.modules.values()],
                 widget=forms.RadioSelect)

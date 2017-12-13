@@ -1,15 +1,6 @@
-# -*- coding: utf-8 -*-
-
-"""
-.. module:: 
-   :platform: Unix
-   :synopsis: TODO
-
-.. moduleauthor:: Tomas Neme <lacrymology@gmail.com>
-
-"""
 from django.views.generic import RedirectView
 from oscar_payments.modules.payment.base.views import BaseRootMixin
+
 
 class PaypalRootView(BaseRootMixin, RedirectView):
     """
