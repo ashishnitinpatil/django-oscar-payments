@@ -42,7 +42,7 @@ class PaymentDetailsView(FormMixin, views.PaymentDetailsView):
     def post(self, request, *args, **kwargs):
         if self.preview:
             if request.POST.get('action', '') == 'place_order':
-                return self.submit(request.basket)
+                return self.submit(**self.build_submission())
             return self.render_preview(request, **kwargs)
 
         # FormView bit
